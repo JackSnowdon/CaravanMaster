@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600&display=swap');
+
+/* Background */
+
+.bg {
+    background-color: #f4f4f4;
+    font-family: 'Baloo Tamma 2', cursive;
+    height: 100%;
+}
+
+
+/* Navbar */
+
+.nav-bg {
+    background-color: #E0A410;
+}
+
+.nav-bg a {
+    color: #1D1115;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.nav-bg a:hover {
+    color: #6F2D11;
+}
+
+.nav-button {
+    color: #6F2D11;
+}
+
+.navbar-toggler {
+    outline: none;
+}
+
+.logged-in {
+    color: #f4f4f4;
+    margin: 8px 2px;
+}
+
+
+/* Class Helpers */
+
+tr {
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+
+/* Fonts */
+
+.headliner-text {
+    font-weight: 600;
+    font-size: 2.75rem;
+}
+
+.body-text {
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+
+/* GAMEHOUSE ICONS */
+
+.button-img {
+    height: 150px;
+    width: 150px;
+}
