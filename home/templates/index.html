@@ -10,12 +10,12 @@
 
 <section class="welcome">
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-9 col-12">
             <h3>Welcome to Caravan Master</h3>
             <p class="body-text">You wake up after what feels like the longest sleep, in an empty room. Find out the truth of what happened and travel from city to city trading goods in a wasteland ravished by COVID-19</p>
         </div>
-        <div class="col-6 text-center">
-            <img src="{% static 'img/journey.png' %}" alt="Journey Icon" class="img-fluid button-img">
+        <div class="col-md-3 col-12 text-center">
+            <a href="{% url 'party_home' %}"><img src="{% static 'img/journey.png' %}" alt="Journey Icon" class="img-fluid button-img"></a>
         </div>
     </div>
 </section>
