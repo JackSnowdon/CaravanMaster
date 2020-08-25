@@ -4,6 +4,7 @@
     <div class="row mb-2">
         <div class="col-12">
             <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Back</a>
+            <a href="{% url 'rename_avatar' ava.pk %}" role="button" class="btn btn-info" aria-disabled="false">Rename</a>
             <a href="{% url 'delete_avatar' ava.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete</a>
         </div>
     </div>
@@ -14,12 +15,24 @@
         <div class="col-6">
             <h3>{{ ava.name }}</h3>
             <div class="row">
-                <div class="col-4">Level: {{ ava.level }}</div>
-                <div class="col-4">Gold: {{ ava.gold }}</div>
-                <div class="col-4">XP: {{ ava.xp }}</div>
-                <div class="col-4">Atk: {{ ava.attack }}</div>
-                <div class="col-4">Def: {{ ava.defense }}</div>
-                <div class="col-4">Int: {{ ava.intel }}</div>
+                <div class="col-4">
+                    <p class="avatar-stat">Level: {{ ava.level }}</p>
+                </div>
+                <div class="col-4">
+                    <p class="avatar-stat">Gold: {{ ava.gold }}</p>
+                </div>
+                <div class="col-4">
+                    <p class="avatar-stat">XP: {{ ava.xp }}</p>
+                </div>
+                <div class="col-4">
+                    <p class="avatar-stat">Atk: {{ ava.attack }}</p>
+                </div>
+                <div class="col-4">
+                    <p class="avatar-stat">Def: {{ ava.defense }}</p>
+                </div>
+                <div class="col-4">
+                    <p class="avatar-stat">Int: {{ ava.intel }}</p>
+                </div>
             </div>
         </div>
     </div>

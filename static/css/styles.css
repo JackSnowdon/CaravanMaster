@@ -57,6 +57,11 @@
     text-decoration: none;
 }
 
+.avatar-stat {
+    font-size: 18px;
+    padding: 1.25px;
+}
+
 
 /* Class Helpers */
 
