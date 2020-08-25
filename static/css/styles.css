@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 
 /* Background */
 
 .bg {
     background-color: #f4f4f4;
-    font-family: 'Baloo Tamma 2', cursive;
+    font-family: 'Ubuntu', sans-serif;
     height: 100%;
 }
 
@@ -43,8 +43,18 @@
 
 /* Party */
 
-.ava-list-item {
+.ava-list-item a {
+    color: black;
     font-size: 20px;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.ava-list-item a:hover {
+    color: #0189d8;
+    text-decoration: none;
 }
 
 
@@ -61,7 +71,7 @@ tr {
 /* Fonts */
 
 .headliner-text {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 2.75rem;
 }
 

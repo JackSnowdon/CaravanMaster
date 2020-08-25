@@ -30,3 +30,23 @@ def create_avatar(request):
         ava_form = AvatarForm()
     return render(request, "create_avatar.html", {"ava_form": ava_form})
 
+
+@login_required
+def avatar_screen(request, pk):
+    ava = get_object_or_404(Avatar, pk=pk)
+    return render(request, "avatar_screen.html", {"ava": ava})
+
+
+@login_required
+def delete_avatar(request, pk):
+    ava = get_object_or_404(Avatar, pk=pk)
+    if ava.created_by == request.user.profile:
+        ava.delete()
+        messages.error(
+            request, f"Deleted {ava}", extra_tags="alert"
+        )
+        return redirect(reverse("party_home"))
+    else:
+        messages.error(request, f"Avatar Not Yours To Delete", extra_tags="alert")
+        return redirect("party_home")
+

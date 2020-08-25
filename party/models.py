@@ -6,7 +6,7 @@ from accounts.models import Profile
 
 class Avatar(models.Model):
     name = models.CharField(max_length=255)
-    level = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(50)], default=0)
+    level = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(50)], default=1)
     attack = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
     defense = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
     intel = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)

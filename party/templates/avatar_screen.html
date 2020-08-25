@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% block page_title %} Caravan Master | {{ ava }} {% endblock %} {% block content %}
+
+<section class="button-nav">
+    <div class="row mb-2">
+        <div class="col-12">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Back</a>
+            <a href="{% url 'delete_avatar' ava.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete</a>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="row text-center">
+        <div class="col-6">
+            <h3>{{ ava.name }}</h3>
+            <div class="row">
+                <div class="col-4">Level: {{ ava.level }}</div>
+                <div class="col-4">Gold: {{ ava.gold }}</div>
+                <div class="col-4">XP: {{ ava.xp }}</div>
+                <div class="col-4">Atk: {{ ava.attack }}</div>
+                <div class="col-4">Def: {{ ava.defense }}</div>
+                <div class="col-4">Int: {{ ava.intel }}</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
