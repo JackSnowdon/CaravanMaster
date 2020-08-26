@@ -23,9 +23,13 @@ def create_avatar(request):
         if ava_form.is_valid():
             form = ava_form.save(commit=False)
             form.created_by = request.user.profile
-            form.save()
-            messages.error(request, "Created {0}".format(form.name), extra_tags="alert")
-            return redirect("party_home")    
+            point_total = form.attack + form.defense + form.intel
+            if point_total > 10:
+                messages.error(request, "Overall Skills Above 10 ({0})".format(point_total), extra_tags="alert")
+            else:
+                form.save()
+                messages.error(request, "Created {0}".format(form.name), extra_tags="alert")
+                return redirect("party_home")    
     else:
         ava_form = AvatarForm()
     return render(request, "create_avatar.html", {"ava_form": ava_form})

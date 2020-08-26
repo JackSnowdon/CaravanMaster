@@ -6,6 +6,20 @@
     </div>
 </div>
 
+<section class="avatars">
+    <div class="row">
+        <div class="col-12">
+            <h3>Avatars</h3>
+            <ul class="ava-list">
+                {% for a in avas %}
+                <li class="ava-list-item">
+                    <a href="{% url 'avatar_screen' a.pk %}">{{ a.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
 {% if user.profile.staff_access %}
 <div class="row">
     <div class="col-12 text-center mb-3">

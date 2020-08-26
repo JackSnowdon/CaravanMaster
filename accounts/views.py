@@ -3,7 +3,8 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
-from accounts.forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm
+from party.models import *
 
 # Create your views here.
 
@@ -76,12 +77,14 @@ def user_profile(request):
     """ Display user profile """
     user = User.objects.get(email=request.user.email)
     profile = user.profile
+    avas = profile.games.all()
     return render(
         request,
         "profile.html",
         {
             "user": user,
             "profile": profile,
+            "avas": avas,
         },
     )
 
