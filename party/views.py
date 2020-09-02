@@ -91,7 +91,7 @@ def caravan(request, pk):
     return render(request, "caravan.html", {"cav": cav})
 
 
-# Members
+# Members Backend
 
 @login_required
 def member_home(request):
@@ -118,4 +118,21 @@ def member_base(request, pk):
     mem = get_object_or_404(MemberBase, pk=pk)
     return render(request, "member_base.html", {"mem": mem})
 
+
+# Crew
+
+@login_required
+def crew(request, pk):
+    ava = get_object_or_404(Avatar, pk=pk)
+    mems = MemberBase.objects.order_by('name')
+    return render(request, "crew.html", {"mems": mems, "ava": ava})
+
+
+
+@login_required
+def hire_crew(request, crewpk, avapk):
+    crew = get_object_or_404(CrewMember, pk=crewpk)
+    ava = get_object_or_404(Avatar, pk=avapk)
+    crew_form = HireCrewForm()
+    form = crew_form.save(commit=False)
 

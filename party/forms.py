@@ -28,3 +28,10 @@ class CreateMemberBase(forms.ModelForm):
         model = MemberBase
         fields = '__all__'
 
+
+class HireCrewForm(forms.ModelForm):
+
+    class Meta:
+        model = CrewMember
+        fields = ['base', 'hired_by']
+

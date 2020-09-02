@@ -44,6 +44,9 @@
 <section class="caravan">
     <div class="row">
         <div class="col-4 text-center">
+            <h5><a href="{% url 'crew' ava.pk %}" class="cav-item">Crew</a></h5>
+        </div>
+        <div class="col-4 text-center">
             {% if ava.cav %}
             <h5>
                 <a href="{% url 'caravan' ava.cav.pk %}" class="cav-item">{{ ava.cav }}</a>
@@ -52,7 +55,6 @@
             {% else %}
             <a href="{% url 'start_caravan' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Start Caravan</a> {% endif %}
         </div>
-        <div class="col-4"></div>
         <div class="col-4"></div>
     </div>
 </section>

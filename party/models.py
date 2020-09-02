@@ -35,3 +35,16 @@ class MemberBase(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CrewMember(models.Model):
+    base = models.ForeignKey(MemberBase, related_name='members', on_delete=models.CASCADE)
+    hired_by = models.ForeignKey(Avatar, related_name='crew', on_delete=models.CASCADE)
+    max_hp = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
+    current_hp = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
+    xp = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(1000000000)], default=0)
+    assigned_to = models.ForeignKey(Caravan, related_name='guard', blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.hired_by.name}'s {self.base.name}"
+

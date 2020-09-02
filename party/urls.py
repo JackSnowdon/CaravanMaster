@@ -9,7 +9,8 @@ urlpatterns = [
     path(r'rename_avatar/<int:pk>', rename_avatar, name="rename_avatar"),
     path(r'start_caravan/<int:pk>', start_caravan, name="start_caravan"),
     path(r'caravan/<int:pk>', caravan, name="caravan"),
-    path(r'member_home', member_home, name="member_home"),
-    path(r'create_member_base', create_member_base, name="create_member_base"),
+    path(r'member_home/', member_home, name="member_home"),
+    path(r'create_member_base/', create_member_base, name="create_member_base"),
     path(r'member_base/<int:pk>', member_base, name="member_base"),
+    path(r'crew/<int:pk>', crew, name="crew"),
 ]
