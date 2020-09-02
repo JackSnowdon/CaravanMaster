@@ -124,15 +124,31 @@ def member_base(request, pk):
 @login_required
 def crew(request, pk):
     ava = get_object_or_404(Avatar, pk=pk)
+    crew = ava.crew.all()
     mems = MemberBase.objects.order_by('name')
-    return render(request, "crew.html", {"mems": mems, "ava": ava})
-
+    return render(request, "crew.html", {"mems": mems, "ava": ava, "crew": crew})
 
 
 @login_required
 def hire_crew(request, crewpk, avapk):
-    crew = get_object_or_404(CrewMember, pk=crewpk)
+    crew = get_object_or_404(MemberBase, pk=crewpk)
     ava = get_object_or_404(Avatar, pk=avapk)
     crew_form = HireCrewForm()
     form = crew_form.save(commit=False)
+    form.base = crew
+    form.hired_by = ava
+    form.save()
+    messages.error(request, f"{ava} Hired {crew}", extra_tags="alert")
+    return redirect("crew", ava.pk)
+    
+
+@login_required
+def fire_crew(request, crewpk, avapk):
+    ava = get_object_or_404(Avatar, pk=avapk)
+    this_crew = get_object_or_404(CrewMember, pk=crewpk)
+    this_crew.delete()
+    messages.error(
+            request, f"Fired {this_crew}", extra_tags="alert"
+        )
+    return redirect("crew", ava.pk)
 

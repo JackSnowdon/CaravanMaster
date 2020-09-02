@@ -45,6 +45,7 @@
     <div class="row">
         <div class="col-4 text-center">
             <h5><a href="{% url 'crew' ava.pk %}" class="cav-item">Crew</a></h5>
+            <p>Size: {{ ava.crew.count }}</p>
         </div>
         <div class="col-4 text-center">
             {% if ava.cav %}

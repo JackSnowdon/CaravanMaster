@@ -10,14 +10,23 @@
 
 <section class="caravan">
     <div class="row">
-        <div class="col-4 text-center">
+        <div class="col-4">
+            <h5 class="text-center">Current Crew</h5>
+            <p>Total: {{ crew.count }}</p>
+            <ul class="party-list">
+                {% for c in crew %}
+                <li class="party-list-item">
+                    <a href="">{{ c.base.name }}</a><a href="{% url 'fire_crew' c.pk ava.pk %}"><i class="fas fa-user-slash"></i></a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
         <div class="col-4">
             <h5 class="text-center">Hire Crew</h5>
             <ul class="party-list">
                 {% for m in mems %}
                 <li class="party-list-item">
-                    <a href="#">{{ m.name }}</a>
+                    <a href="{% url 'hire_crew' m.pk ava.pk %}">{{ m.name }}</a>
                 </li>
                 {% endfor %}
             </ul>
