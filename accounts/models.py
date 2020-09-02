@@ -8,7 +8,6 @@ from django.dispatch import receiver
 Upon User creation, Profile model is added and connected to a single user
 """
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     staff_access = models.BooleanField(default=False)

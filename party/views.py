@@ -26,6 +26,8 @@ def create_avatar(request):
             point_total = form.attack + form.defense + form.intel
             if point_total > 10:
                 messages.error(request, "Overall Skills Above 10 ({0})".format(point_total), extra_tags="alert")
+            elif point_total < 10:
+                messages.error(request, "Overall Skills Below 10 ({0})".format(point_total), extra_tags="alert")
             else:
                 form.save()
                 messages.error(request, "Created {0}".format(form.name), extra_tags="alert")
@@ -38,6 +40,7 @@ def create_avatar(request):
 @login_required
 def avatar_screen(request, pk):
     ava = get_object_or_404(Avatar, pk=pk)
+    print(ava.cav)
     return render(request, "avatar_screen.html", {"ava": ava})
 
 
@@ -68,3 +71,17 @@ def rename_avatar(request, pk):
     else:
         ava_form = RenameAvatar()
     return render(request, "rename_avatar.html", {"ava_form": ava_form, "ava": ava})
+
+
+# Caravan 
+
+@login_required
+def start_caravan(request, pk):
+    ava = get_object_or_404(Avatar, pk=pk)
+    cav_form = CaravanForm()
+    form = cav_form.save(commit=False)
+    form.owner = ava
+    form.save()
+    messages.error(request, "Created {0}'s Caravan".format(ava.name), extra_tags="alert")
+    return redirect("avatar_screen", ava.pk)  
+

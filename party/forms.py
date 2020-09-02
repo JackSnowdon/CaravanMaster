@@ -14,3 +14,9 @@ class RenameAvatar(forms.ModelForm):
         model = Avatar
         fields = ['name']
 
+
+class CaravanForm(forms.ModelForm):
+
+    class Meta:
+        model = Caravan
+        fields = '__all__'

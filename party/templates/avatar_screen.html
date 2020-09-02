@@ -12,28 +12,36 @@
 
 <section class="stats">
     <div class="row text-center">
-        <div class="col-4">
+        <div class="col-12">
             <h3>{{ ava.name }}</h3>
             <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                     <p class="avatar-stat">Level: {{ ava.level }}</p>
                 </div>
-                <div class="col-4">
+                <div class="col-2">
                     <p class="avatar-stat">Gold: {{ ava.gold }}</p>
                 </div>
-                <div class="col-4">
+                <div class="col-2">
                     <p class="avatar-stat">XP: {{ ava.xp }}</p>
                 </div>
-                <div class="col-4">
-                    <p class="avatar-stat">Atk: {{ ava.attack }}</p>
+                <div class="col-2">
+                    <p class="avatar-stat">Attack: {{ ava.attack }}</p>
                 </div>
-                <div class="col-4">
-                    <p class="avatar-stat">Def: {{ ava.defense }}</p>
+                <div class="col-2">
+                    <p class="avatar-stat">Defense: {{ ava.defense }}</p>
                 </div>
-                <div class="col-4">
-                    <p class="avatar-stat">Int: {{ ava.intel }}</p>
+                <div class="col-2">
+                    <p class="avatar-stat">Intel: {{ ava.intel }}</p>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="caravan">
+    <div class="row">
+        <div class="col-4">
+            <a href="{% url 'start_caravan' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Start Caravan</a>
         </div>
     </div>
 </section>

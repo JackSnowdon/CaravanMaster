@@ -17,3 +17,10 @@ class Avatar(models.Model):
     def __str__(self):
         return self.name
 
+
+class Caravan(models.Model):
+    owner = models.OneToOneField(Avatar, related_name='cav', on_delete=models.CASCADE)
+    size = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)], default=50)
+
+    def __str__(self):
+        return f"{self.owner.name}'s Caravan"
