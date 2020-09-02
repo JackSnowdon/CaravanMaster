@@ -8,4 +8,5 @@ urlpatterns = [
     path(r'delete_avatar/<int:pk>', delete_avatar, name="delete_avatar"),
     path(r'rename_avatar/<int:pk>', rename_avatar, name="rename_avatar"),
     path(r'start_caravan/<int:pk>', start_caravan, name="start_caravan"),
+    path(r'caravan/<int:pk>', caravan, name="caravan"),
 ]

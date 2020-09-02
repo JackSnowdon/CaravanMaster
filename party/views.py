@@ -40,7 +40,6 @@ def create_avatar(request):
 @login_required
 def avatar_screen(request, pk):
     ava = get_object_or_404(Avatar, pk=pk)
-    print(ava.cav)
     return render(request, "avatar_screen.html", {"ava": ava})
 
 
@@ -83,5 +82,11 @@ def start_caravan(request, pk):
     form.owner = ava
     form.save()
     messages.error(request, "Created {0}'s Caravan".format(ava.name), extra_tags="alert")
-    return redirect("avatar_screen", ava.pk)  
+    return redirect("avatar_screen", ava.pk)
+
+
+@login_required
+def caravan(request, pk):
+    cav = get_object_or_404(Caravan, pk=pk)
+    return render(request, "caravan.html", {"cav": cav})
 

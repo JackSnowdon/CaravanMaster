@@ -20,3 +20,11 @@ class CaravanForm(forms.ModelForm):
     class Meta:
         model = Caravan
         fields = '__all__'
+
+
+class CreateMember(forms.ModelForm):
+
+    class Meta:
+        model = Member
+        exclude = ['assigned_to', 'currently_in']
+

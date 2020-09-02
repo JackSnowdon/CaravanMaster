@@ -24,3 +24,16 @@ class Caravan(models.Model):
 
     def __str__(self):
         return f"{self.owner.name}'s Caravan"
+
+
+class Member(models.Model):
+    name = models.CharField(max_length=255)
+    level = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(50)], default=1)
+    attack = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
+    defense = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
+    intel = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
+    assigned_to = models.ForeignKey(Avatar, related_name='members', blank=True, null=True, on_delete=models.CASCADE)
+    currently_in = models.ForeignKey(Caravan, related_name='crew', blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
