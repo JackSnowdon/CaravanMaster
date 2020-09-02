@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<form role="form" method="post" id="new_member_form" action="{% url 'create_member' %}">
+<form role="form" method="post" id="new_member_base_form" action="{% url 'create_member_base' %}">
     <div class="form-group">
         {% csrf_token %}
         <div class="form-row mb-2">
@@ -39,7 +39,7 @@
         <br>
         <div class="row">
             <div class="col-12 text-center">
-                <input class="btn btn-success" id="submit_member" name="commit" type="submit" value="Create Member">
+                <input class="btn btn-success" id="submit_member_base" name="commit" type="submit" value="Create Member">
             </div>
         </div>
         <br>

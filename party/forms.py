@@ -22,9 +22,9 @@ class CaravanForm(forms.ModelForm):
         fields = '__all__'
 
 
-class CreateMember(forms.ModelForm):
+class CreateMemberBase(forms.ModelForm):
 
     class Meta:
-        model = Member
-        exclude = ['assigned_to', 'currently_in']
+        model = MemberBase
+        fields = '__all__'
 
