@@ -43,7 +43,7 @@
 
 /* Party */
 
-.ava-list-item a {
+.party-list-item a {
     color: black;
     font-size: 20px;
     transition: all 0.35s ease-in-out;
@@ -52,7 +52,7 @@
     -o-transition: all 0.35s ease-in-out;
 }
 
-.ava-list-item a:hover {
+.party-list-item a:hover {
     color: #0189d8;
     text-decoration: none;
 }

@@ -2,10 +2,13 @@
 
 <section class="button-nav">
     <div class="row mb-3 mt-1">
-        <div class="col-12">
+        <div class="col-6">
             <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Back</a>
             <a href="{% url 'rename_avatar' ava.pk %}" role="button" class="btn btn-info" aria-disabled="false">Rename</a>
             <a href="{% url 'delete_avatar' ava.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete</a>
+        </div>
+        <div class="col-6">
+            <a href="{% url 'member_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Member</a>
         </div>
     </div>
 </section>
@@ -43,11 +46,14 @@
         <div class="col-4 text-center">
             {% if ava.cav %}
             <h5>
-                <a href="{% url 'caravan' ava.cav.pk %}" class="cav-item">{{ ava.cav }}</a></h5>
+                <a href="{% url 'caravan' ava.cav.pk %}" class="cav-item">{{ ava.cav }}</a>
+            </h5>
             <p>Size: {{ ava.cav.size }}</p>
             {% else %}
             <a href="{% url 'start_caravan' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Start Caravan</a> {% endif %}
         </div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
     </div>
 </section>
 

@@ -90,3 +90,25 @@ def caravan(request, pk):
     cav = get_object_or_404(Caravan, pk=pk)
     return render(request, "caravan.html", {"cav": cav})
 
+
+# Members
+
+@login_required
+def member_home(request):
+    mems = Member.objects.order_by('name')
+    return render(request, "member_home.html", {"mems": mems})
+
+
+@login_required
+def create_member(request):
+    if request.method == "POST":
+        mem_form = CreateMember(request.POST)
+        if mem_form.is_valid():
+            form = mem_form.save(commit=False)
+            form.save()
+            messages.error(request, "Created {0}".format(form.name), extra_tags="alert")
+            return redirect("member_home")    
+    else:
+        mem_form = CreateMember()
+    return render(request, "create_member.html", {"mem_form": mem_form})
+

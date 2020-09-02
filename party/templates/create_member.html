@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block page_title %} Caravan Master | Create Member {% endblock %} {% block content %}
+
+<section class="button-nav">
+    <div class="row mb-5">
+        <div class="col-12">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Back</a>
+        </div>
+    </div>
+</section>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>New Member</h1>
+    </div>
+</div>
+
+<form role="form" method="post" id="new_member_form" action="{% url 'create_member' %}">
+    <div class="form-group">
+        {% csrf_token %}
+        <div class="form-row mb-2">
+            <div class="form-group offset-md-2 col-md-8 mb-0">
+                {{ mem_form.name|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md">
+                {{ mem_form.level|as_crispy_field }}
+            </div>
+            <div class="form-group col-md">
+                {{ mem_form.attack|as_crispy_field }}
+            </div>
+            <div class="form-group col-md">
+                {{ mem_form.defense|as_crispy_field }}
+            </div>
+            <div class="form-group col-md">
+                {{ mem_form.intel|as_crispy_field }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 text-center">
+                <input class="btn btn-success" id="submit_member" name="commit" type="submit" value="Create Member">
+            </div>
+        </div>
+        <br>
+    </div>
+</form>
+
+
+{% endblock %}
