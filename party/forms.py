@@ -35,3 +35,4 @@ class HireCrewForm(forms.ModelForm):
         model = CrewMember
         fields = ['base', 'hired_by']
 
+

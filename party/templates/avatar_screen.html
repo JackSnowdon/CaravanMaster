@@ -3,12 +3,15 @@
 <section class="button-nav">
     <div class="row mb-3 mt-1">
         <div class="col-6">
-            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Back</a>
-            <a href="{% url 'rename_avatar' ava.pk %}" role="button" class="btn btn-info" aria-disabled="false">Rename</a>
-            <a href="{% url 'delete_avatar' ava.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete</a>
+            <a href="{% url 'avatar_screen' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
+            <a href="{% url 'crew' ava.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a>
+            <a href="{% url 'caravan' ava.cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Caravan</a>
         </div>
         <div class="col-6">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
             <a href="{% url 'member_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Member</a>
+            <a href="{% url 'rename_avatar' ava.pk %}" role="button" class="btn btn-info" aria-disabled="false">Rename</a>
+            <a href="{% url 'delete_avatar' ava.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete</a>
         </div>
     </div>
 </section>

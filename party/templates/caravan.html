@@ -3,7 +3,9 @@
 <section class="button-nav">
     <div class="row mb-3 mt-1">
         <div class="col-12">
-            <a href="{% url 'avatar_screen' cav.owner.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Back</a>
+            <a href="{% url 'avatar_screen' cav.owner.pk %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
+            <a href="{% url 'crew' cav.owner.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a>
+            <a href="{% url 'caravan' cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Caravan</a>
         </div>
     </div>
 </section>
@@ -12,9 +14,26 @@
     <div class="row">
         <div class="col-4 text-center">
             <h5>{{ cav }}</h5>
-            <p>Size: {{ cav.size }}</p>
+            <p>Size: {{ cav.guard.count}}/{{ cav.size }}</p>
+            <ul class="party-list">
+                {% for c in cav.guard.all %}
+                <li class="party-list-item">
+                    <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
         <div class="col-4">
+            <h5 class="text-center">Unassigned Crew</h5>
+            <p class="text-center">Total: {{ crew.count }}</p>
+            <ul class="party-list">
+                {% for c in crew %}
+                <li class="party-list-item">
+                    <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a>
+                    <a href="{% url 'add_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-plus"></i></a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </section>

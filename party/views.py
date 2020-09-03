@@ -88,7 +88,19 @@ def start_caravan(request, pk):
 @login_required
 def caravan(request, pk):
     cav = get_object_or_404(Caravan, pk=pk)
-    return render(request, "caravan.html", {"cav": cav})
+    ava = cav.owner
+    crew = ava.crew.all().filter(assigned_to=None)
+    return render(request, "caravan.html", {"cav": cav, "crew": crew})
+
+
+@login_required
+def add_crew_to_caravan(request, crewpk, cavpk):
+    crew = get_object_or_404(CrewMember, pk=crewpk)
+    cav = get_object_or_404(Caravan, pk=cavpk)
+    crew.assigned_to = cav
+    crew.save()
+    messages.error(request, f"{crew} Added To {cav}", extra_tags="alert")
+    return redirect("caravan", cav.pk)
 
 
 # Members Backend
