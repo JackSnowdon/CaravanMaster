@@ -13,19 +13,23 @@
     <div class="row text-center">
         <div class="col-md-4 col-12">
             <h3>{{ mem }}</h3>
-            <p>HP: {{ mem.current_hp }}/{{ mem.max_hp }}</p>
             <div class="row">
                 <div class="col-md">
-                    <p class="avatar-stat">Level: {{ mem.base.level }}</p>
+                    <p class="avatar-stat">HP {{ mem.current_hp }}/{{ mem.max_hp }}</p>
                 </div>
                 <div class="col-md">
-                    <p class="avatar-stat">Attack: {{ mem.base.attack }}</p>
+                    <p class="avatar-stat">Level {{ mem.base.level }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    <p class="avatar-stat">Attack</br>{{ mem.base.attack }}</p>
                 </div>
                 <div class="col-md">
-                    <p class="avatar-stat">Defense: {{ mem.base.defense }}</p>
+                    <p class="avatar-stat">Defense</br>{{ mem.base.defense }}</p>
                 </div>
                 <div class="col-md">
-                    <p class="avatar-stat">Intel: {{ mem.base.intel }}</p>
+                    <p class="avatar-stat">Intel</br>{{ mem.base.intel }}</p>
                 </div>
             </div>
             <div class="row">

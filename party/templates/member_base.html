@@ -4,26 +4,25 @@
     <div class="row mb-3 mt-1">
         <div class="col-6">
             <a href="{% url 'member_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Member</a>
+            <a href="{% url 'delete_member_base' mem.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete</a>
         </div>
     </div>
 </section>
 
 <section class="stats">
     <div class="row text-center">
-        <div class="col-12">
+        <div class="col-md-4 col-12">
             <h3>{{ mem.name }}</h3>
+            <p>Level {{ mem.level }}</p>
             <div class="row">
                 <div class="col-md">
-                    <p class="avatar-stat">Level: {{ mem.level }}</p>
+                    <p class="avatar-stat">Attack</br>{{ mem.attack }}</p>
                 </div>
                 <div class="col-md">
-                    <p class="avatar-stat">Attack: {{ mem.attack }}</p>
+                    <p class="avatar-stat">Defense</br>{{ mem.defense }}</p>
                 </div>
                 <div class="col-md">
-                    <p class="avatar-stat">Defense: {{ mem.defense }}</p>
-                </div>
-                <div class="col-md">
-                    <p class="avatar-stat">Intel: {{ mem.intel }}</p>
+                    <p class="avatar-stat">Intel</br>{{ mem.intel }}</p>
                 </div>
             </div>
         </div>

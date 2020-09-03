@@ -105,12 +105,27 @@ def create_member_base(request):
         mem_form = CreateMemberBase(request.POST)
         if mem_form.is_valid():
             form = mem_form.save(commit=False)
-            form.save()
-            messages.error(request, "Created {0}".format(form.name), extra_tags="alert")
-            return redirect("member_home")    
+            point_limit = form.level * 10
+            point_total = form.attack + form.defense + form.intel
+            if point_total > point_limit:
+                messages.error(request, f"Point Total ({point_total}) Above Level Limit ({point_limit})", extra_tags="alert")
+            else:
+                form.save()
+                messages.error(request, "Created {0}".format(form.name), extra_tags="alert")
+                return redirect("member_home")    
     else:
         mem_form = CreateMemberBase()
     return render(request, "create_member_base.html", {"mem_form": mem_form})
+
+
+@login_required
+def delete_member_base(request, pk):
+    this_crew = get_object_or_404(MemberBase, pk=pk)
+    this_crew.delete()
+    messages.error(
+            request, f"Deleted {this_crew}", extra_tags="alert"
+        )
+    return redirect("member_home")
 
 
 @login_required

@@ -52,7 +52,7 @@
             <h5>
                 <a href="{% url 'caravan' ava.cav.pk %}" class="cav-item">{{ ava.cav }}</a>
             </h5>
-            <p>Size: {{ ava.cav.size }}</p>
+            <p>Size: {{ ava.cav.guard.count }}/{{ ava.cav.size }}</p>
             {% else %}
             <a href="{% url 'start_caravan' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Start Caravan</a> {% endif %}
         </div>
