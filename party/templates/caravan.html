@@ -12,13 +12,14 @@
 
 <section class="caravan">
     <div class="row">
-        <div class="col-4 text-center">
-            <h5>{{ cav }}</h5>
-            <p>Size: {{ cav.guard.count}}/{{ cav.size }}</p>
+        <div class="col-4">
+            <h5 class="text-center">{{ cav }}</h5>
+            <p class="text-center">Size: {{ cav.guard.count}}/{{ cav.size }}</p>
             <ul class="party-list">
                 {% for c in cav.guard.all %}
                 <li class="party-list-item">
                     <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a>
+                    <a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-minus"></i></a>
                 </li>
                 {% endfor %}
             </ul>
@@ -30,7 +31,7 @@
                 {% for c in crew %}
                 <li class="party-list-item">
                     <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a>
-                    <a href="{% url 'add_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-plus"></i></a>
+                    <a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-plus"></i></a>
                 </li>
                 {% endfor %}
             </ul>

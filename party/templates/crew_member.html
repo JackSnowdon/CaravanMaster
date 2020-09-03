@@ -35,7 +35,9 @@
             </div>
             <div class="row">
                 <div class="col-md">
-                    <p class="avatar-stat">Current Caravan: {{ mem.assigned_to }}</p>
+                    <p class="avatar-stat caravan-link">Current Caravan:
+                        <a href="{% url 'caravan' ava.cav.pk %}">{{ mem.assigned_to }}</a>
+                    </p>
                 </div>
             </div>
         </div>

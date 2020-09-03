@@ -94,12 +94,16 @@ def caravan(request, pk):
 
 
 @login_required
-def add_crew_to_caravan(request, crewpk, cavpk):
+def assign_crew_to_caravan(request, crewpk, cavpk):
     crew = get_object_or_404(CrewMember, pk=crewpk)
     cav = get_object_or_404(Caravan, pk=cavpk)
-    crew.assigned_to = cav
+    if crew.assigned_to != None:
+        crew.assigned_to = None
+        messages.error(request, f"{crew} Removed From {cav}", extra_tags="alert")
+    else:
+        crew.assigned_to = cav
+        messages.error(request, f"{crew} Added To {cav}", extra_tags="alert")
     crew.save()
-    messages.error(request, f"{crew} Added To {cav}", extra_tags="alert")
     return redirect("caravan", cav.pk)
 
 

@@ -76,6 +76,22 @@
 }
 
 
+/* Caravan */
+
+.caravan-link a {
+    color: black;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.caravan-link a:hover {
+    color: #0189d8;
+    text-decoration: none;
+}
+
+
 /* Class Helpers */
 
 tr {
