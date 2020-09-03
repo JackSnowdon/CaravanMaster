@@ -11,12 +11,11 @@
 <section class="caravan">
     <div class="row">
         <div class="col-4">
-            <h5 class="text-center">Current Crew</h5>
-            <p>Total: {{ crew.count }}</p>
+            <h5 class="text-center">Current Crew <span class="small">Total: {{ crew.count }}</span></h5>
             <ul class="party-list">
                 {% for c in crew %}
                 <li class="party-list-item">
-                    <a href="">{{ c.base.name }}</a><a href="{% url 'fire_crew' c.pk ava.pk %}"><i class="fas fa-user-slash"></i></a>
+                    <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a> <a href="{% url 'fire_crew' c.pk ava.pk %}"><i class="fas fa-user-slash"></i></a>
                 </li>
                 {% endfor %}
             </ul>

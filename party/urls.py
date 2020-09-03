@@ -15,4 +15,5 @@ urlpatterns = [
     path(r'crew/<int:pk>', crew, name="crew"),
     path(r'hire_crew/<int:crewpk>/<int:avapk>/', hire_crew, name="hire_crew"),
     path(r'fire_crew/<int:crewpk>/<int:avapk>/', fire_crew, name="fire_crew"),
+    path(r'crew_member/<int:pk>', crew_member, name="crew_member"),
 ]

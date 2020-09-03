@@ -152,3 +152,10 @@ def fire_crew(request, crewpk, avapk):
         )
     return redirect("crew", ava.pk)
 
+
+@login_required
+def crew_member(request, pk):
+    mem = get_object_or_404(CrewMember, pk=pk)
+    ava = mem.hired_by
+    return render(request, "crew_member.html", {"mem": mem, "ava": ava})
+
