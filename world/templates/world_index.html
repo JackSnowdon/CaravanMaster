@@ -8,7 +8,33 @@
     </div>
 </section>
 
-<section class="welcome">
+<section class="world-tools">
+    <div class="row">
+        <div class="col-6">
+            <a href="{% url 'create_location' %}" role="button" class="btn btn-warning mb-3" aria-disabled="false">Create Location</a>
+            <h3 class="text-center">Locations</h3>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Pop</th>
+                        <th scope="col">Pro</th>
+                        <th scope="col">Def</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for l in locs %}
+                    <tr>
+                        <th scope="row" class="party-list-name">{{ l.name }}</th>
+                        <td>{{ l.population }}</td>
+                        <td>{{ l.prosperity }}</td>
+                        <td>{{ l.defense }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
 
 {% endblock %}
