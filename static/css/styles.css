@@ -62,6 +62,19 @@
     padding: 1.25px;
 }
 
+.party-list-name a {
+    color: black;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.party-list-name a:hover {
+    color: #E0A410;
+    text-decoration: none;
+}
+
 .cav-item {
     color: black;
     transition: all 0.35s ease-in-out;

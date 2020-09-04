@@ -12,32 +12,66 @@
 
 <section class="caravan">
     <div class="row">
-        <div class="col-4">
-            <h5 class="text-center">Current Crew <span class="small">Total: {{ crew.count }}</span></h5>
-            <ul class="party-list">
-                {% for c in crew %}
-                <li class="party-list-item">
-                    <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a> <a href="{% url 'fire_crew' c.pk ava.pk %}"><i class="fas fa-user-slash"></i></a>
-                </li>
-                {% endfor %}
-            </ul>
-            <ul class="party-list">
+        <div class="col-md-6 col-12">
+            <h5 class="text-center mb-3">Current Crew <span class="small">Total: {{ crew.count }}</span></h5>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Atk</th>
+                        <th scope="col">Def</th>
+                        <th scope="col">Int</th>
+                        <th scope="col">Lvl</th>
+                        <th scope="col">Mng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in crew %}
+                    <tr>
+                        <th scope="row" class="party-list-name"><a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</th>
+                        <td>{{ c.base.attack }}</td>
+                        <td>{{ c.base.defense }}</td>
+                        <td>{{ c.base.intel }}</td>
+                        <td>{{ c.base.level }}</td>
+                        <td class="party-list-item"><a href="{% url 'fire_crew' c.pk ava.pk %}"><i class="fas fa-user-slash"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <ul class="party-list">
                 {% for crew, count in ncrew.items %}
                 <li class="party-list-item">
                     <a href="{% url 'crew_member' crew.pk %}">{{ crew.base.name }}</a> <a href="{% url 'fire_crew' crew.pk ava.pk %}"> - {{ count }}<i class="fas fa-user-slash"></i></a>
                 </li>
                 {% endfor %}
-            </ul>
+            </ul> -->
         </div>
-        <div class="col-4">
-            <h5 class="text-center">Hire Crew</h5>
-            <ul class="party-list">
-                {% for m in mems %}
-                <li class="party-list-item">
-                    <a href="{% url 'hire_crew' m.pk ava.pk %}">{{ m.name }}</a>
-                </li>
-                {% endfor %}
-            </ul>
+        <div class="col-md-6 col-12">
+            <h5 class="text-center mb-3">Hire Crew</h5>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Atk</th>
+                        <th scope="col">Def</th>
+                        <th scope="col">Int</th>
+                        <th scope="col">Lvl</th>
+                        <th scope="col">Mng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in mems %}
+                    <tr>
+                        <th scope="row">{{ m.name }}</th>
+                        <td>{{ m.attack }}</td>
+                        <td>{{ m.defense }}</td>
+                        <td>{{ m.intel }}</td>
+                        <td>{{ m.level }}</td>
+                        <td class="party-list-item"><a href="{% url 'hire_crew' m.pk ava.pk %}"><i class="fas fa-user-plus"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

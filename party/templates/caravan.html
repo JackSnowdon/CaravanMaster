@@ -12,29 +12,61 @@
 
 <section class="caravan">
     <div class="row">
-        <div class="col-4">
-            <h5 class="text-center">{{ cav }}</h5>
+        <div class="col-md-6 col-12">
+            <h5 class="text-center">Guard</h5>
             <p class="text-center">Size: {{ cav.guard.count}}/{{ cav.size }}</p>
-            <ul class="party-list">
-                {% for c in guard %}
-                <li class="party-list-item">
-                    <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a>
-                    <a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-minus"></i></a>
-                </li>
-                {% endfor %}
-            </ul>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Atk</th>
+                        <th scope="col">Def</th>
+                        <th scope="col">Int</th>
+                        <th scope="col">Lvl</th>
+                        <th scope="col">Mng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in guard %}
+                    <tr>
+                        <th scope="row" class="party-list-name"><a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a></th>
+                        <td>{{ c.base.attack }}</td>
+                        <td>{{ c.base.defense }}</td>
+                        <td>{{ c.base.intel }}</td>
+                        <td>{{ c.base.level }}</td>
+                        <td class="party-list-item"><a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-minus"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <div class="col-4">
+        <div class="col-md-6 col-12">
             <h5 class="text-center">Unassigned Crew</h5>
             <p class="text-center">Total: {{ crew.count }}</p>
-            <ul class="party-list">
-                {% for c in crew %}
-                <li class="party-list-item">
-                    <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a>
-                    <a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-plus"></i></a>
-                </li>
-                {% endfor %}
-            </ul>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Atk</th>
+                        <th scope="col">Def</th>
+                        <th scope="col">Int</th>
+                        <th scope="col">Lvl</th>
+                        <th scope="col">Mng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in crew %}
+                    <tr>
+                        <th scope="row" class="party-list-name"><a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a></th>
+                        <td>{{ c.base.attack }}</td>
+                        <td>{{ c.base.defense }}</td>
+                        <td>{{ c.base.intel }}</td>
+                        <td>{{ c.base.level }}</td>
+                        <td class="party-list-item"><a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-plus"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
