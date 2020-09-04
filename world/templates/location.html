@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block page_title %} Caravan Master | {{ loc }} {% endblock %} {% block content %}
+
+<section class="button-nav">
+    <div class="row mb-3 mt-1">
+        <div class="col-6">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
+            <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
+            <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <h3>{{ loc.name }}</h3>
+                </div>
+                <div class="col-md">
+                    <p class="avatar-stat">Population</br>{{ loc.population }}</p>
+                </div>
+                <div class="col-md">
+                    <p class="avatar-stat">Prosperity</br>{{ loc.prosperity }}</p>
+                </div>
+                <div class="col-md">
+                    <p class="avatar-stat">Defense</br>{{ loc.defnese }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

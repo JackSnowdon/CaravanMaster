@@ -31,16 +31,18 @@
                         <th scope="col">Pro</th>
                         <th scope="col">Def</th>
                         <th scope="col">Edt</th>
+                        <th scope="col">Dlt</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for l in locs %}
                     <tr>
-                        <th scope="row" class="party-list-name">{{ l.name }}</th>
+                        <th scope="row" class="party-list-name"><a href="{% url 'location' l.pk %}">{{ l.name }}</a></th>
                         <td>{{ l.population }}</td>
                         <td>{{ l.prosperity }}</td>
                         <td>{{ l.defense }}</td>
                         <td class="party-list-item"><a href="{% url 'edit_location' l.pk %}"><i class="fas fa-pencil-alt"></i></a></td>
+                        <td class="party-list-item"><a href="{% url 'delete_location' l.pk %}"><i class="far fa-trash-alt"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
