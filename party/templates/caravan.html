@@ -17,7 +17,8 @@
     <div class="row mb-3">
         <div class="col-12">
             <h2>{{ cav }}</h2>
-            <h5 class="ml-2">Currently At {{ cav.currently_at }}</h5>
+            <p class="caravan-link ml-2">Currently At <a href="{% url 'location' cav.currently_at.pk %}">{{ cav.currently_at }}</a></p>
+            <a href="{% url 'move_caravan' cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Move</a>
         </div>
     </div>
 </section>

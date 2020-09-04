@@ -6,6 +6,8 @@ from .forms import *
 
 # Create your views here.
 
+# Location Backend
+
 @login_required
 def world_index(request):
     locs = Location.objects.order_by('-population')
@@ -81,3 +83,6 @@ def delete_location(request, pk):
         )
         return redirect("index")
     
+
+# Movement 
+

@@ -10,6 +10,7 @@ urlpatterns = [
     path(r'start_caravan/<int:pk>', start_caravan, name="start_caravan"),
     path(r'caravan/<int:pk>', caravan, name="caravan"),
     path(r'assign_crew_to_caravan/<int:crewpk>/<int:cavpk>', assign_crew_to_caravan, name="assign_crew_to_caravan"),
+    path(r'move_caravan/<int:pk>', move_caravan, name="move_caravan"),
     path(r'member_home/', member_home, name="member_home"),
     path(r'create_member_base/', create_member_base, name="create_member_base"),
     path(r'delete_member_base/<int:pk>', delete_member_base, name="delete_member_base"),

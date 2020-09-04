@@ -22,6 +22,13 @@ class CaravanForm(forms.ModelForm):
         fields = '__all__'
 
 
+class MoveCaravanForm(forms.ModelForm):
+
+    class Meta:
+        model = Caravan
+        fields = ['currently_at']
+
+
 class CreateMemberBase(forms.ModelForm):
 
     class Meta:

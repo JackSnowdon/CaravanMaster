@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block page_title %} Caravan Master | Move {{ cav }} {% endblock %} {% block content %}
+
+<section class="button-nav">
+    <div class="row mb-3 mt-1">
+        <div class="col-6">
+            <a href="{% url 'avatar_screen' cav.owner.pk %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
+            <a href="{% url 'crew' cav.owner.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a>
+            <a href="{% url 'caravan' cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Caravan</a>
+        </div>
+        <div class="col-6">
+            <p class="bar-stat">Gold: {{ cav.owner.gold }}</p>
+        </div>
+    </div>
+</section>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Moving {{ cav }}</h1>
+        <p>Currently At {{ cav.currently_at }}</p>
+    </div>
+</div>
+
+<form role="form" method="post" id="move_caravan_form" action="{% url 'move_caravan' cav.pk %}">
+    <div class="form-group">
+        {% csrf_token %}
+        <div class="form-row mb-2">
+            <div class="form-group offset-md-2 col-md-8 mb-0">
+                {{ move_form.currently_at|as_crispy_field }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 text-center">
+                <input class="btn btn-success" id="move_caravan" name="commit" type="submit" value="Move">
+            </div>
+        </div>
+        <br>
+    </div>
+</form>
+
+
+{% endblock %}

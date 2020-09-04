@@ -110,6 +110,27 @@ def assign_crew_to_caravan(request, crewpk, cavpk):
     return redirect("caravan", cav.pk)
 
 
+@login_required
+def move_caravan(request, pk):
+    cav = get_object_or_404(Caravan, pk=pk)
+    current_location = cav.currently_at
+    if request.method == "POST":
+        move_form = MoveCaravanForm(request.POST, instance=cav)
+        if move_form.is_valid():
+            form = move_form.save(commit=False)
+            form.save()
+            messages.error(
+                request, f"{cav} Moved From {current_location} To {form.currently_at}", extra_tags="alert"
+            )
+            return redirect("caravan", cav.pk)
+    else:
+        move_form = MoveCaravanForm(instance=cav)
+    return render(
+        request,
+        "move_caravan.html",
+        {"move_form": move_form, "cav": cav},
+    )
+
 # Members Backend
 
 @login_required
