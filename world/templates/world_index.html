@@ -1,7 +1,17 @@
 {% extends 'base.html' %} {% load static %} {% block page_title %} Caravan Master {% endblock %} {% block content %}
 
+<section class="button-nav">
+    <div class="row mb-3 mt-1">
+        <div class="col-6">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
+            <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
+            <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a>
+        </div>
+    </div>
+</section>
+
 <section class="header">
-    <div class="row mb-5">
+    <div class="row mb-3">
         <div class="col-12 text-center">
             <h3>World Index</h3>
         </div>
@@ -20,6 +30,7 @@
                         <th scope="col">Pop</th>
                         <th scope="col">Pro</th>
                         <th scope="col">Def</th>
+                        <th scope="col">Edt</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +40,7 @@
                         <td>{{ l.population }}</td>
                         <td>{{ l.prosperity }}</td>
                         <td>{{ l.defense }}</td>
+                        <td class="party-list-item"><a href="{% url 'edit_location' l.pk %}"><i class="fas fa-pencil-alt"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
