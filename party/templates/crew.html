@@ -21,6 +21,13 @@
                 </li>
                 {% endfor %}
             </ul>
+            <ul class="party-list">
+                {% for crew, count in ncrew.items %}
+                <li class="party-list-item">
+                    <a href="{% url 'crew_member' crew.pk %}">{{ crew.base.name }}</a> <a href="{% url 'fire_crew' crew.pk ava.pk %}"> - {{ count }}<i class="fas fa-user-slash"></i></a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
         <div class="col-4">
             <h5 class="text-center">Hire Crew</h5>

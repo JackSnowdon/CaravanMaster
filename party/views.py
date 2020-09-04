@@ -89,8 +89,9 @@ def start_caravan(request, pk):
 def caravan(request, pk):
     cav = get_object_or_404(Caravan, pk=pk)
     ava = cav.owner
-    crew = ava.crew.all().filter(assigned_to=None)
-    return render(request, "caravan.html", {"cav": cav, "crew": crew})
+    crew = ava.crew.all().filter(assigned_to=None).order_by('base__name')
+    guard = cav.guard.all().order_by('base__name')
+    return render(request, "caravan.html", {"cav": cav, "crew": crew, "guard": guard})
 
 
 @login_required
@@ -155,10 +156,21 @@ def member_base(request, pk):
 @login_required
 def crew(request, pk):
     ava = get_object_or_404(Avatar, pk=pk)
-    crew = ava.crew.all()
     mems = MemberBase.objects.order_by('name')
+    crew = ava.crew.all().order_by('base__name')
+   # ncrew = return_grouped_crew(crew)
+  #  print(ncrew)
     return render(request, "crew.html", {"mems": mems, "ava": ava, "crew": crew})
 
+
+def return_grouped_crew(crew):
+    returned_dict = {}
+    for i, c in enumerate(crew):
+        result = crew.filter(base=c.base)
+        if c in returned_dict:
+            break
+        returned_dict[c] = result.count()
+    return returned_dict
 
 @login_required
 def hire_crew(request, crewpk, avapk):

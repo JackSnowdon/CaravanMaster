@@ -16,7 +16,7 @@
             <h5 class="text-center">{{ cav }}</h5>
             <p class="text-center">Size: {{ cav.guard.count}}/{{ cav.size }}</p>
             <ul class="party-list">
-                {% for c in cav.guard.all %}
+                {% for c in guard %}
                 <li class="party-list-item">
                     <a href="{% url 'crew_member' c.pk %}">{{ c.base.name }}</a>
                     <a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-minus"></i></a>
