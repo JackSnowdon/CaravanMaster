@@ -171,25 +171,33 @@ def return_grouped_crew(crew):
             break
         returned_dict[c] = result.count()
     return returned_dict
-    
+
 
 @login_required
 def hire_crew(request, crewpk, avapk):
     crew = get_object_or_404(MemberBase, pk=crewpk)
     ava = get_object_or_404(Avatar, pk=avapk)
-    crew_form = HireCrewForm()
-    form = crew_form.save(commit=False)
-    form.base = crew
-    form.hired_by = ava
-    form.save()
-    messages.error(request, f"{ava} Hired {crew}", extra_tags="alert")
-    return redirect("crew", ava.pk)
+    if ava.gold < crew.cost:
+        messages.error(request, f"{ava} Can't Afford {crew} ({crew.cost}) Gold", extra_tags="alert")
+        return redirect("crew", ava.pk)
+    else:
+        ava.gold -= crew.cost
+        ava.save()
+        crew_form = HireCrewForm()
+        form = crew_form.save(commit=False)
+        form.base = crew
+        form.hired_by = ava
+        form.save()
+        messages.error(request, f"{ava} Hired {crew}", extra_tags="alert")
+        return redirect("crew", ava.pk)
     
 
 @login_required
 def fire_crew(request, crewpk, avapk):
     ava = get_object_or_404(Avatar, pk=avapk)
     this_crew = get_object_or_404(CrewMember, pk=crewpk)
+    ava.gold += this_crew.base.cost / 2
+    ava.save()
     this_crew.delete()
     messages.error(
             request, f"Fired {this_crew}", extra_tags="alert"
