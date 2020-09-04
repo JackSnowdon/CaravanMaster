@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from accounts.models import Profile
+from world.models import Location
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Avatar(models.Model):
 class Caravan(models.Model):
     owner = models.OneToOneField(Avatar, related_name='cav', on_delete=models.CASCADE)
     size = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)], default=50)
+    currently_at = models.ForeignKey(Location, related_name='games', blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f"{self.owner.name}'s Caravan"

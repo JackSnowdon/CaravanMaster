@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from .forms import *
-
+from world.models import Location
 
 # Create your views here.
 
@@ -79,6 +79,8 @@ def start_caravan(request, pk):
     ava = get_object_or_404(Avatar, pk=pk)
     cav_form = CaravanForm()
     form = cav_form.save(commit=False)
+    loc = get_object_or_404(Location, name="HomeVilled")
+    form.currently_at = loc
     form.owner = ava
     form.save()
     messages.error(request, "Created {0}'s Caravan".format(ava.name), extra_tags="alert")
