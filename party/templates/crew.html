@@ -56,6 +56,7 @@
                         <th scope="col">Def</th>
                         <th scope="col">Int</th>
                         <th scope="col">Lvl</th>
+                        <th scope="col">Cst</th>
                         <th scope="col">Mng</th>
                     </tr>
                 </thead>
@@ -67,6 +68,7 @@
                         <td>{{ m.defense }}</td>
                         <td>{{ m.intel }}</td>
                         <td>{{ m.level }}</td>
+                        <td>{{ m.cost }}</td>
                         <td class="party-list-item"><a href="{% url 'hire_crew' m.pk ava.pk %}"><i class="fas fa-user-plus"></i></a></td>
                     </tr>
                     {% endfor %}

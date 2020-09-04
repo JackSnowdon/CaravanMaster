@@ -13,7 +13,14 @@
     <div class="row text-center">
         <div class="col-md-4 col-12">
             <h3>{{ mem.name }}</h3>
-            <p>Level {{ mem.level }}</p>
+            <div class="row">
+                <div class="col-6">
+                    <p>Level {{ mem.level }}</p>
+                </div>
+                <div class="col-6">
+                    <p>Cost {{ mem.cost }}</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md">
                     <p class="avatar-stat">Attack</br>{{ mem.attack }}</p>

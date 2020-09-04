@@ -171,6 +171,7 @@ def return_grouped_crew(crew):
             break
         returned_dict[c] = result.count()
     return returned_dict
+    
 
 @login_required
 def hire_crew(request, crewpk, avapk):

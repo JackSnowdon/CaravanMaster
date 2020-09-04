@@ -34,10 +34,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md">
+                <div class="col-12">
                     <p class="avatar-stat caravan-link">Current Caravan:
                         <a href="{% url 'caravan' ava.cav.pk %}">{{ mem.assigned_to }}</a>
                     </p>
+                </div>
+                <div class="col-12">
+                    <p>Hired For {{ mem.base.cost }} Gold</p>
                 </div>
             </div>
         </div>
