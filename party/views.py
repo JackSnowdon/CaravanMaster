@@ -209,6 +209,8 @@ def hire_crew(request, crewpk, avapk):
         crew_form = HireCrewForm()
         form = crew_form.save(commit=False)
         form.base = crew
+        form.max_hp = 100 + form.base.level * 10 + form.base.defense * 3
+        form.current_hp = form.max_hp
         form.hired_by = ava
         form.save()
         messages.error(request, f"{ava} Hired {crew}", extra_tags="alert")

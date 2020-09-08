@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+from party.models import Avatar
 
 # Create your views here.
 
@@ -33,12 +34,6 @@ def create_location(request):
             request, "You Don't Have The Required Permissions", extra_tags="alert"
         )
         return redirect("index")
-
-
-@login_required
-def location(request, pk):
-    loc = get_object_or_404(Location, pk=pk)
-    return render(request, "location.html", {"loc": loc})
 
 
 @login_required
@@ -82,6 +77,12 @@ def delete_location(request, pk):
             request, "You Don't Have The Required Permissions", extra_tags="alert"
         )
         return redirect("index")
+
+
+@login_required
+def location(request, pk):
+    loc = get_object_or_404(Location, pk=pk)
+    return render(request, "location.html", {"loc": loc})
     
 
 # Movement 

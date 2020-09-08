@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from world.models import Location
 
 class AvatarForm(forms.ModelForm):
     
@@ -27,6 +28,9 @@ class MoveCaravanForm(forms.ModelForm):
     class Meta:
         model = Caravan
         fields = ['currently_at']
+        labels = {
+        "currently_at": "Move To",
+        }
 
 
 class CreateMemberBase(forms.ModelForm):
