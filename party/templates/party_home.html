@@ -3,9 +3,9 @@
 <section class="button-nav">
     <div class="row mb-3 mt-1">
         <div class="col-6">
-            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a> {% if user.profile.staff_access %}
             <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
-            <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a>
+            <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a> {% endif %}
         </div>
     </div>
 </section>
