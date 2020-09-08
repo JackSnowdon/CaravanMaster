@@ -81,8 +81,10 @@ def delete_location(request, pk):
 
 @login_required
 def location(request, pk):
+    c_ava = request.user.profile.current_save
+    ava = get_object_or_404(Avatar, pk=c_ava)
     loc = get_object_or_404(Location, pk=pk)
-    return render(request, "location.html", {"loc": loc})
+    return render(request, "location.html", {"loc": loc, "ava": ava})
     
 
 # Movement 

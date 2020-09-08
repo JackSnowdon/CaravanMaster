@@ -2,7 +2,7 @@
 
 <section class="button-nav">
     <div class="row mb-3 mt-1">
-        <div class="col-6">
+        <div class="col-md-6 col-12">
             <a href="{% url 'avatar_screen' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
             <a href="{% url 'crew' ava.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a> {% if ava.cav %}
             <a href="{% url 'caravan' ava.cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Caravan</a> {% endif %}
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6 col-12">
             <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a> {% if request.user.profile.staff_access %}
             <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
             <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a> {% endif %}

@@ -37,6 +37,7 @@
                 </li>
                 <!--- Below LI displays active user logged in -->
                 <li class="nav-item logged-in">Logged in as: <span class="capitalize">{{user}}</span></li>
+                <li class="nav-item logged-in">Current Save: <span class="capitalize">{{user.profile.current_save}}</span></li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
