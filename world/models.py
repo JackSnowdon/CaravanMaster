@@ -11,3 +11,13 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Campground(models.Model):
+    location = models.OneToOneField(Location, related_name='camp', on_delete=models.CASCADE)
+    gold = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000000)], default=0)
+
+    def __str__(self):
+        return f"{self.location.name}'s Campground"
+
+    

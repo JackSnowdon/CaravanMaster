@@ -20,7 +20,7 @@
 
 <section class="world-tools">
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <a href="{% url 'create_location' %}" role="button" class="btn btn-warning mb-3" aria-disabled="false">Create Location</a>
             <h3 class="text-center">Locations</h3>
             <table class="table table-hover text-center">
@@ -30,6 +30,7 @@
                         <th scope="col">Pop</th>
                         <th scope="col">Pro</th>
                         <th scope="col">Def</th>
+                        <th scope="col">Cmp</th>
                         <th scope="col">Edt</th>
                         <th scope="col">Dlt</th>
                     </tr>
@@ -41,6 +42,7 @@
                         <td>{{ l.population }}</td>
                         <td>{{ l.prosperity }}</td>
                         <td>{{ l.defense }}</td>
+                        <td>{% if l.camp %}<i class="fas fa-campground"></i>{% else %}N/A{% endif %}</td>
                         <td class="party-list-item"><a href="{% url 'edit_location' l.pk %}"><i class="fas fa-pencil-alt"></i></a></td>
                         <td class="party-list-item"><a href="{% url 'delete_location' l.pk %}"><i class="far fa-trash-alt"></i></a></td>
                     </tr>

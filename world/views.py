@@ -79,6 +79,8 @@ def delete_location(request, pk):
         return redirect("index")
 
 
+# Location 
+
 @login_required
 def location(request, pk):
     save = request.user.profile.current_save

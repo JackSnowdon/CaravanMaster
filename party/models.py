@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from accounts.models import Profile
-from world.models import Location
+from world.models import *
 
 # Create your models here.
 
