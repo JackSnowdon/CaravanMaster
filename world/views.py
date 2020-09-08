@@ -87,6 +87,32 @@ def location(request, pk):
     ava = get_object_or_404(Avatar, pk=save)
     loc = get_object_or_404(Location, pk=pk)
     return render(request, "location.html", {"loc": loc, "ava": ava})
+
+
+@login_required
+def create_camp(request, pk):
+    if request.user.profile.staff_access:
+        loc = get_object_or_404(Location, pk=pk)
+        camp_form = CampgroundForm()
+        form = camp_form.save(commit=False)
+        form.gold = 1000
+        form.location = loc
+        form.save()
+        messages.error(request, f"Created {loc}'s Campground", extra_tags="alert")
+        return redirect("world_index")
+    else:
+        messages.error(
+            request, "You Don't Have The Required Permissions", extra_tags="alert"
+        )
+        return redirect("index")
+
+
+@login_required
+def campground(request, pk):
+    save = request.user.profile.current_save
+    ava = get_object_or_404(Avatar, pk=save)
+    camp = get_object_or_404(Campground, pk=pk)
+    return render(request, "campground.html", {"camp": camp, "ava": ava})
     
 
 # Movement 

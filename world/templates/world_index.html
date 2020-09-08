@@ -42,8 +42,9 @@
                         <td>{{ l.population }}</td>
                         <td>{{ l.prosperity }}</td>
                         <td>{{ l.defense }}</td>
-                        <td>{% if l.camp %}<i class="fas fa-campground"></i>{% else %}N/A{% endif %}</td>
-                        <td class="party-list-item"><a href="{% url 'edit_location' l.pk %}"><i class="fas fa-pencil-alt"></i></a></td>
+                        <td>{% if l.camp %}<a href="{% url 'campground' l.pk %}"><i class="fas fa-campground active-camp"></i></a>{% else %}<a href="{% url 'create_camp' l.pk %}"><i class="fas fa-campground no-camp"></i></a>{% endif %}</td>
+                        <td class="party-list-item"><a href="{% url 'edit_location' l.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                        </td>
                         <td class="party-list-item"><a href="{% url 'delete_location' l.pk %}"><i class="far fa-trash-alt"></i></a></td>
                     </tr>
                     {% endfor %}

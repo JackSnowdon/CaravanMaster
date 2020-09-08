@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% load static %} {% block page_title %} Caravan Master | {{ camp }} {% endblock %} {% block content %}
+
+<section class="button-nav">
+    <div class="row mb-3 mt-1">
+        <div class="col-md-6 col-12">
+            <a href="{% url 'avatar_screen' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
+            <a href="{% url 'crew' ava.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a>
+            <a href="{% url 'caravan' ava.cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Caravan</a>
+        </div>
+        {% if user.profile.staff_access %}
+        <div class="col-md-6 col-12">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
+            <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
+            <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="stats">
+    <div class="row text-center">
+        <div class="col-12">
+            <h3>{{ camp }}</h3>
+        </div>
+        <div class="col-md">
+            <p class="avatar-stat">Gold</br>{{ camp.gold }}</p>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

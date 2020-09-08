@@ -7,4 +7,6 @@ urlpatterns = [
     path(r'edit_location/<int:pk>', edit_location, name="edit_location"),
     path(r'delete_location/<int:pk>', delete_location, name="delete_location"),
     path(r'location/<int:pk>', location, name="location"),
+    path(r'create_camp/<int:pk>', create_camp, name="create_camp"),
+    path(r'campground/<int:pk>', campground, name="campground"),
 ]

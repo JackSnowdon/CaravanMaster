@@ -110,6 +110,33 @@
 }
 
 
+/* World */
+
+.active-camp {
+    color: #149c0f;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.active-camp {
+    color: #14e20c;
+}
+
+.no-camp {
+    color: #811b1b;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.no-camp:hover {
+    color: #eb1010;
+}
+
+
 /* Class Helpers */
 
 tr {

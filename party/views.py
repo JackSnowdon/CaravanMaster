@@ -40,8 +40,9 @@ def create_avatar(request):
 @login_required
 def avatar_screen(request, pk):
     profile = request.user.profile
-    profile.current_save = pk
-    profile.save()
+    if profile.current_save != pk:
+        profile.current_save = pk
+        profile.save()
     ava = get_object_or_404(Avatar, pk=pk)
     return render(request, "avatar_screen.html", {"ava": ava})
 
