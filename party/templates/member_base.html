@@ -36,5 +36,16 @@
     </div>
 </section>
 
+<section class="camps">
+    <div class="row">
+        <div class="col-12">
+            <h5>Campgrounds:</h5>
+            {% for c in mem.camps.all %}
+            <p>{{ c }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 
 {% endblock %}

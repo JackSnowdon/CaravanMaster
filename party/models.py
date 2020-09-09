@@ -35,6 +35,7 @@ class MemberBase(models.Model):
     defense = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
     intel = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
     cost = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
+    camps = models.ManyToManyField(Campground, related_name="mercs", blank=True)
 
     def __str__(self):
         return self.name
