@@ -21,6 +21,9 @@ class CaravanForm(forms.ModelForm):
     class Meta:
         model = Caravan
         fields = '__all__'
+        labels = {
+        "camps": "Campgrounds",
+        }
 
 
 class MoveCaravanForm(forms.ModelForm):

@@ -2,10 +2,18 @@
 
 <section class="button-nav">
     <div class="row mb-3 mt-1">
-        <div class="col-6">
-            <a href="{% url 'member_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Member</a>
+        <div class="col-md-6 col-12">
+            <a href="{% url 'avatar_screen' user.profile.current_save %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
+            <a href="{% url 'crew' user.profile.current_save %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a>
+        </div>
+        {% if user.profile.staff_access %}
+        <div class="col-md-6 col-12">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
+            <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
+            <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a>
             <a href="{% url 'delete_member_base' mem.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete</a>
         </div>
+        {% endif %}
     </div>
 </section>
 
@@ -40,12 +48,15 @@
     <div class="row">
         <div class="col-12">
             <h5>Campgrounds:</h5>
-            {% for c in mem.camps.all %}
-            <p>{{ c }}</p>
-            {% endfor %}
+            <ul class="party-list">
+                {% for c in mem.camps.all %}
+                <li class="party-list-item">
+                    <a href="{% url 'campground' c.pk %}">{{ c }}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </section>
-
 
 {% endblock %}

@@ -155,6 +155,7 @@ def create_member_base(request):
                 messages.error(request, f"Point Total ({point_total}) Above Level Limit ({point_limit})", extra_tags="alert")
             else:
                 form.save()
+                mem_form.save_m2m()
                 messages.error(request, "Created {0}".format(form.name), extra_tags="alert")
                 return redirect("member_home")    
     else:

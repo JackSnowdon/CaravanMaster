@@ -6,9 +6,9 @@
             <a href="{% url 'avatar_screen' cav.owner.pk %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
             <a href="{% url 'crew' cav.owner.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a>
             <a href="{% url 'caravan' cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Caravan</a>
-        </div>
-        <div class="col-md-6 col-12">
-            <p class="bar-stat">Gold: {{ cav.owner.gold }}</p>
+            <div class="col-md-6 col-12">
+                <p class="bar-stat">Gold: {{ cav.owner.gold }}</p>
+            </div>
         </div>
     </div>
 </section>
