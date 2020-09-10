@@ -34,7 +34,9 @@
 <section class="mercs">
     <div class="row">
         <div class="col-12">
-            <h5 class="text-center mb-3">Hire Crew</h5>
+            <a href="{% url 'caravan' ava.cav.pk %}" class="cav-item">
+                <h5 class="text-center mb-3">Hire Mercs To Cavaran ({{ ava.cav.guard.count}}/{{ ava.cav.size }})</h5>
+            </a>
             <table class="table table-hover text-center">
                 <thead>
                     <tr>
@@ -50,7 +52,7 @@
                         <th scope="row" class="party-list-name"><a href="{% url 'member_base' m.pk %}">{{ m.name }}</th>
                         <td>{{ m.level }}</td>
                         <td>{{ m.cost }}</td>
-                        <td class="party-list-item"><a href="{% url 'hire_crew' m.pk ava.pk %}"><i class="fas fa-user-plus"></i></a></td>
+                        <td class="party-list-item"><a href="{% url 'hire_merc' m.pk camp.location.pk %}"><i class="fas fa-user-plus"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -3,7 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
-from party.models import Avatar
+from party.models import *
+from party.forms import HireCrewForm
 
 # Create your views here.
 
@@ -109,10 +110,42 @@ def create_camp(request, pk):
 
 @login_required
 def campground(request, pk):
-    save = request.user.profile.current_save
-    ava = get_object_or_404(Avatar, pk=save)
+    ava = get_current_save(request.user.profile)
     camp = get_object_or_404(Campground, pk=pk)
     return render(request, "campground.html", {"camp": camp, "ava": ava})
+
+
+@login_required
+def hire_merc(request, pk, locpk):
+    crew = get_object_or_404(MemberBase, pk=pk)
+    ava = get_current_save(request.user.profile)
+    loc = get_object_or_404(Location, pk=locpk)
+    if ava.gold < crew.cost:
+        messages.error(request, f"{ava} Can't Afford {crew} ({crew.cost}) Gold", extra_tags="alert")
+        return redirect("campground", loc.pk)
+    else:
+        ava.gold -= crew.cost
+        ava.save()
+        crew_form = HireCrewForm()
+        form = crew_form.save(commit=False)
+        form.base = crew
+        form.max_hp = 100 + form.base.level * 10 + form.base.defense * 3
+        form.current_hp = form.max_hp
+        form.hired_by = ava
+        form.assigned_to = ava.cav
+        form.save()
+        messages.error(request, f"{ava} Hired {crew}, Assigned To {ava.cav}", extra_tags="alert")
+        return redirect("campground", loc.pk)
+
+
+def get_current_save(p):
+    """
+    Takes reuqest.user.profile and returns Avatar
+    """
+    save = p.current_save
+    ava = get_object_or_404(Avatar, pk=save)
+    return ava
+
     
 
 # Movement 
