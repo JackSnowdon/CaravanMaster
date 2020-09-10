@@ -24,10 +24,9 @@
 <section class="campground">
     <div class="row text-center">
         <div class="col-12">
-            <h3>{{ camp }}</h3>
-        </div>
-        <div class="col-md">
-            <p class="avatar-stat">Gold</br>{{ camp.gold }}</p>
+            <a href="{% url 'location' camp.location.pk %}" class="cav-item">
+                <h3>{{ camp }}</h3>
+            </a>
         </div>
     </div>
 </section>
@@ -48,7 +47,7 @@
                 <tbody>
                     {% for m in camp.mercs.all %}
                     <tr>
-                        <th scope="row">{{ m.name }}</th>
+                        <th scope="row" class="party-list-name"><a href="{% url 'member_base' m.pk %}">{{ m.name }}</th>
                         <td>{{ m.level }}</td>
                         <td>{{ m.cost }}</td>
                         <td class="party-list-item"><a href="{% url 'hire_crew' m.pk ava.pk %}"><i class="fas fa-user-plus"></i></a></td>
@@ -56,6 +55,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="col-md">
+            <p class="avatar-stat">Camp Gold</br>{{ camp.gold }}</p>
         </div>
     </div>
 </section>

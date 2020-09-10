@@ -176,7 +176,9 @@ def delete_member_base(request, pk):
 @login_required
 def member_base(request, pk):
     mem = get_object_or_404(MemberBase, pk=pk)
-    return render(request, "member_base.html", {"mem": mem})
+    save = request.user.profile.current_save
+    ava = get_object_or_404(Avatar, pk=save)
+    return render(request, "member_base.html", {"mem": mem, "ava": ava})
 
 
 # Crew
