@@ -108,6 +108,9 @@ def assign_crew_to_caravan(request, crewpk, cavpk):
         crew.assigned_to = None
         messages.error(request, f"{crew} Removed From {cav}", extra_tags="alert")
     else:
+        if cav.guard.count() >= cav.size:
+            messages.error(request, f"{cav} Is Full ({cav.size})", extra_tags="alert")
+            return redirect("caravan", cav.pk)
         crew.assigned_to = cav
         messages.error(request, f"{crew} Added To {cav}", extra_tags="alert")
     crew.save()

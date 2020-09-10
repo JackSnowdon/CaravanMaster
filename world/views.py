@@ -120,6 +120,9 @@ def hire_merc(request, pk, locpk):
     crew = get_object_or_404(MemberBase, pk=pk)
     ava = get_current_save(request.user.profile)
     loc = get_object_or_404(Location, pk=locpk)
+    if ava.cav.guard.count() >= ava.cav.size:
+        messages.error(request, f"{ava.cav} Is Full ({ava.cav.size})", extra_tags="alert")
+        return redirect("campground", loc.pk)
     if ava.gold < crew.cost:
         messages.error(request, f"{ava} Can't Afford {crew} ({crew.cost}) Gold", extra_tags="alert")
         return redirect("campground", loc.pk)

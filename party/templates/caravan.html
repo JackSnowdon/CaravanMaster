@@ -11,6 +11,9 @@
                 <p class="bar-stat">Gold: {{ cav.owner.gold }}</p>
             </div>
         </div>
+        <div class="col-md-6 col-12">
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
+        </div>
     </div>
 </section>
 
@@ -18,7 +21,7 @@
     <div class="row mb-3">
         <div class="col-4 text-center">
             <h2>{{ cav }}</h2>
-            <p class="caravan-link ml-2">Currently At <a href="{% url 'location' cav.currently_at.pk %}">{{ cav.currently_at }}</a></p>
+            <p class="caravan-link">Currently At <a href="{% url 'location' cav.currently_at.pk %}">{{ cav.currently_at }}</a></p>
             <a href="{% url 'move_caravan' cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Move</a>
         </div>
     </div>
