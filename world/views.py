@@ -14,14 +14,9 @@ from party.forms import HireCrewForm
 def world_index(request):
     locs = Location.objects.order_by('-population')
     shops = Shop.objects.all()
-    loc_shops = []
-    nomad_shops = []
-    for s in shops:
-        if s.location is None:
-            nomad_shops.append(s)
-        else:
-            loc_shops.append(s)
-    return render(request, "world_index.html", {"locs": locs, "shops": shops, "loc_shops": loc_shops, "nomad_shops": nomad_shops})
+    loc_shops = shops.exclude(location__name__isnull=True).order_by('location__name')
+    nomad_shops = shops.exclude(location__name__isnull=False)
+    return render(request, "world_index.html", {"locs": locs, "loc_shops": loc_shops, "nomad_shops": nomad_shops})
 
 
 @login_required
@@ -92,8 +87,7 @@ def delete_location(request, pk):
 
 @login_required
 def location(request, pk):
-    save = request.user.profile.current_save
-    ava = get_object_or_404(Avatar, pk=save)
+    ava = get_current_save(request.user.profile)
     loc = get_object_or_404(Location, pk=pk)
     return render(request, "location.html", {"loc": loc, "ava": ava})
 
@@ -192,11 +186,18 @@ def delete_shop(request, pk):
         return redirect("index")
 
 
+@login_required
+def shop(request, pk):
+    ava = get_current_save(request.user.profile)
+    shop = get_object_or_404(Shop, pk=pk)
+    return render(request, "shop.html", {"shop": shop, "ava": ava})
+
+
 # Helper Functions
 
 def get_current_save(p):
     """
-    Takes reuqest.user.profile and returns Avatar
+    Takes request.user.profile and returns Avatar
     """
     save = p.current_save
     ava = get_object_or_404(Avatar, pk=save)

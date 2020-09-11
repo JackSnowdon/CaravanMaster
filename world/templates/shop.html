@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block page_title %} Caravan Master | {{ shop }} {% endblock %} {% block content %}
+
+<section class="button-nav">
+    <div class="row mb-3 mt-1">
+        <div class="col-md-6 col-12">
+            <a href="{% url 'avatar_screen' ava.pk %}" role="button" class="btn btn-success" aria-disabled="false">Avatar</a>
+            <a href="{% url 'crew' ava.pk %}" role="button" class="btn btn-warning" aria-disabled="false">Crew</a>
+            <a href="{% url 'caravan' ava.cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Caravan</a>
+            <a href="{% url 'location' ava.cav.currently_at.pk %}" role="button" class="btn btn-danger" aria-disabled="false">{{ ava.cav.currently_at }}</a>
+            <div class="col-md-6 col-12">
+                <p class="bar-stat">Gold: {{ ava.gold }}</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            {% if user.profile.staff_access %}
+            <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
+            <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
+            <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a>
+            <a href="{% url 'delete_shop' shop.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Delete {{ shop }}</a>{% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="stats mb-3">
+    <div class="row text-center">
+        <div class="col-12">
+            {% if shop.location %}
+            <h3>{{ shop.location }} {{ shop }}</h3>
+            {% else %}
+            <h3>Nomad {{ shop }}</h3>
+            {% endif %}
+        </div>
+        <div class="col-6">
+            <p class="avatar-stat">Gold: {{ shop.gold }}</p>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

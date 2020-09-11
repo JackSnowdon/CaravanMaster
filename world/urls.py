@@ -12,4 +12,5 @@ urlpatterns = [
     path(r'hire_merc/<int:pk>/<int:locpk>', hire_merc, name="hire_merc"),
     path('create_shop/', create_shop, name="create_shop"),
     path(r'delete_shop/<int:pk>', delete_shop, name="delete_shop"),
+    path(r'shop/<int:pk>', shop, name="shop"),
 ]

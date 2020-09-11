@@ -65,7 +65,7 @@
             <ul class="party-list">
                 {% for s in loc_shops %}
                 <li class="party-list-item">
-                    <a href="#">{{ s.location }}s {{ s }}</a><a href="{% url 'delete_shop' s.pk %}" onclick="return confirm('Delete {{ s.location }}s {{ s }}?');"><i class="fas fa-dumpster-fire delete-shop"></i></a>
+                    <a href="{% url 'shop' s.pk %}">{{ s.location }} {{ s }}</a><a href="{% url 'delete_shop' s.pk %}" onclick="return confirm('Delete {{ s.location }}s {{ s }}?');"><i class="fas fa-dumpster-fire delete-shop"></i></a>
                 </li>
                 {% endfor %}
             </ul>
@@ -75,7 +75,7 @@
             <ul class="party-list">
                 {% for s in nomad_shops %}
                 <li class="party-list-item">
-                    <a href="#">{{ s }}</a><a href="{% url 'delete_shop' s.pk %}" onclick="return confirm('Delete Nomad {{ s }}?');"><i class="fas fa-dumpster-fire delete-shop"></i></a>
+                    <a href="{% url 'shop' s.pk %}">{{ s }}</a><a href="{% url 'delete_shop' s.pk %}" onclick="return confirm('Delete Nomad {{ s }}?');"><i class="fas fa-dumpster-fire delete-shop"></i></a>
                 </li>
                 {% endfor %}
             </ul>
