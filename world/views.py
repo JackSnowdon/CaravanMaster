@@ -14,7 +14,14 @@ from party.forms import HireCrewForm
 def world_index(request):
     locs = Location.objects.order_by('-population')
     shops = Shop.objects.all()
-    return render(request, "world_index.html", {"locs": locs, "shops": shops})
+    loc_shops = []
+    nomad_shops = []
+    for s in shops:
+        if s.location is None:
+            nomad_shops.append(s)
+        else:
+            loc_shops.append(s)
+    return render(request, "world_index.html", {"locs": locs, "shops": shops, "loc_shops": loc_shops, "nomad_shops": nomad_shops})
 
 
 @login_required
@@ -162,6 +169,22 @@ def create_shop(request):
         else:
             shop_form = ShopForm()
         return render(request, "create_shop.html", {"shop_form": shop_form})
+    else:
+        messages.error(
+            request, "You Don't Have The Required Permissions", extra_tags="alert"
+        )
+        return redirect("index")
+
+
+@login_required
+def delete_shop(request, pk):
+    if request.user.profile.staff_access:
+        this_shop = get_object_or_404(Shop, pk=pk)
+        this_shop.delete()
+        messages.error(
+            request, f"Deleted {this_shop}", extra_tags="alert"
+        )
+        return redirect("world_index")
     else:
         messages.error(
             request, "You Don't Have The Required Permissions", extra_tags="alert"

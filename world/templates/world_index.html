@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section class="world-tools">
+<section class="locations">
     <div class="row">
         <div class="col-12">
             <a href="{% url 'create_location' %}" role="button" class="btn btn-warning mb-3" aria-disabled="false">Create Location</a>
@@ -51,12 +51,34 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</section>
+
+<section class="shops">
+    <div class="row">
         <div class="col-12">
             <a href="{% url 'create_shop' %}" role="button" class="btn btn-warning mb-3" aria-disabled="false">Create Shop</a>
-            <h3 class="text-center">Shops</h3>
-            {% for s in shops %}
-            <p>{{ s }}</p>
-            {% endfor %}
+            <h3 class="text-center mb-3">Shops</h3>
+        </div>
+        <div class="col-6">
+            <h4 class="text-center">Town Shops</h4>
+            <ul class="party-list">
+                {% for s in loc_shops %}
+                <li class="party-list-item">
+                    <a href="#">{{ s.location }}s {{ s }}</a><a href="{% url 'delete_shop' s.pk %}" onclick="return confirm('Delete {{ s.location }}s {{ s }}?');"><i class="fas fa-dumpster-fire delete-shop"></i></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-6">
+            <h4 class="text-center">Nomad Shops</h4>
+            <ul class="party-list">
+                {% for s in nomad_shops %}
+                <li class="party-list-item">
+                    <a href="#">{{ s }}</a><a href="{% url 'delete_shop' s.pk %}" onclick="return confirm('Delete Nomad {{ s }}?');"><i class="fas fa-dumpster-fire delete-shop"></i></a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </section>
