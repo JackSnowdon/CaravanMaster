@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(Location)
 admin.site.register(Campground)
+admin.site.register(Shop)

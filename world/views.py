@@ -13,7 +13,8 @@ from party.forms import HireCrewForm
 @login_required
 def world_index(request):
     locs = Location.objects.order_by('-population')
-    return render(request, "world_index.html", {"locs": locs})
+    shops = Shop.objects.all()
+    return render(request, "world_index.html", {"locs": locs, "shops": shops})
 
 
 @login_required
@@ -108,6 +109,8 @@ def create_camp(request, pk):
         return redirect("index")
 
 
+# Campground
+
 @login_required
 def campground(request, pk):
     ava = get_current_save(request.user.profile)
@@ -143,6 +146,30 @@ def hire_merc(request, pk, locpk):
         messages.error(request, f"{ava} Hired {crew}, Assigned To {ava.cav}", extra_tags="alert")
         return redirect("campground", loc.pk)
 
+
+# Shop
+
+@login_required
+def create_shop(request):
+    if request.user.profile.staff_access:
+        if request.method == "POST":
+            shop_form = ShopForm(request.POST)
+            if shop_form.is_valid():
+                form = shop_form.save(commit=False)
+                form.save()
+                messages.error(request, f"New Shop Created", extra_tags="alert")
+                return redirect("world_index")    
+        else:
+            shop_form = ShopForm()
+        return render(request, "create_shop.html", {"shop_form": shop_form})
+    else:
+        messages.error(
+            request, "You Don't Have The Required Permissions", extra_tags="alert"
+        )
+        return redirect("index")
+
+
+# Helper Functions
 
 def get_current_save(p):
     """

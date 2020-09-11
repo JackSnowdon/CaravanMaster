@@ -24,6 +24,10 @@
             <p class="caravan-link">Currently At <a href="{% url 'location' cav.currently_at.pk %}">{{ cav.currently_at }}</a></p>
             <a href="{% url 'move_caravan' cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Move</a>
         </div>
+        <div class="col-4 text-center">
+            <p class="text-center">Size: {{ cav.guard.count}}/{{ cav.size }}</p>
+            <p>Carry Limit: 0/{{ carry_limit }}</p>
+        </div>
     </div>
 </section>
 

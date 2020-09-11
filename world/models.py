@@ -19,5 +19,25 @@ class Campground(models.Model):
 
     def __str__(self):
         return f"{self.location.name}'s Campground"
+        
 
+class Shop(models.Model):
+    location = models.ForeignKey(Location, related_name='shops', blank=True, null=True, on_delete=models.CASCADE)
+    gold = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000000)], default=0)
+    WEAPON = 'Weapon'
+    MATERIAL = 'Material'
+    TRANSPORT = 'Transport'
+    TYPE_CHOICES = [
+        (WEAPON, 'Weapon'),
+        (MATERIAL, 'Material'),
+        (TRANSPORT, 'Transport'),
+    ]
+    shop_type = models.CharField(
+        max_length=10,
+        choices=TYPE_CHOICES,
+        default=WEAPON,
+    )
     
+    def __str__(self):
+        return f"{self.shop_type} Shop"
+

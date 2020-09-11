@@ -10,4 +10,5 @@ urlpatterns = [
     path(r'create_camp/<int:pk>', create_camp, name="create_camp"),
     path(r'campground/<int:pk>', campground, name="campground"),
     path(r'hire_merc/<int:pk>/<int:locpk>', hire_merc, name="hire_merc"),
+    path('create_shop/', create_shop, name="create_shop"),
 ]
