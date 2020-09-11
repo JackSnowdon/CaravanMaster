@@ -29,7 +29,9 @@
                         <th scope="col">Def</th>
                         <th scope="col">Int</th>
                         <th scope="col">Lvl</th>
+                        {% if ava.cav.currently_at.name == "HomeVilled" %}
                         <th scope="col">Mng</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +42,9 @@
                         <td>{{ c.base.defense }}</td>
                         <td>{{ c.base.intel }}</td>
                         <td>{{ c.base.level }}</td>
+                        {% if ava.cav.currently_at.name == "HomeVilled" %}
                         <td class="party-list-item"><a href="{% url 'fire_crew' c.pk ava.pk %}"><i class="fas fa-user-slash"></i></a></td>
+                            {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -97,7 +97,8 @@ def caravan(request, pk):
     ava = cav.owner
     crew = ava.crew.all().filter(assigned_to=None).order_by('base__name')
     guard = cav.guard.all().order_by('base__name')
-    return render(request, "caravan.html", {"cav": cav, "crew": crew, "guard": guard})
+    carry_limit = get_cav_carrying_limit(cav)
+    return render(request, "caravan.html", {"cav": cav, "crew": crew, "guard": guard, "carry_limit": carry_limit})
 
 
 @login_required
@@ -137,6 +138,15 @@ def move_caravan(request, pk):
         "move_caravan.html",
         {"move_form": move_form, "cav": cav},
     )
+
+
+def get_cav_carrying_limit(cav):
+    limit = 0
+    for c in cav.guard.all():
+        limit += c.base.intel
+    limit += cav.owner.intel * 2
+    return limit
+    
 
 # Members Backend
 

@@ -54,7 +54,11 @@
                         <td>{{ c.base.defense }}</td>
                         <td>{{ c.base.intel }}</td>
                         <td>{{ c.base.level }}</td>
+                        {% if cav.currently_at.name == "HomeVilled" %}
                         <td class="party-list-item"><a href="{% url 'assign_crew_to_caravan' c.pk cav.pk %}"><i class="fas fa-user-minus"></i></a></td>
+                        {% else %}
+                        <td class="party-list-item"><a href="{% url 'fire_crew' c.pk cav.owner.pk %}" onclick="return confirm('Are you sure you to fire {{ c.base }}? Return to HomeVilled to place in unassigned crew');"><i class="fas fa-user-slash"></i></a></td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -62,6 +66,7 @@
         </div>
         <div class="col-md-6 col-12">
             <h5 class="text-center">Unassigned Crew</h5>
+            {% if cav.currently_at.name == "HomeVilled" %}
             <p class="text-center">Total: {{ crew.count }}</p>
             <table class="table table-hover text-center">
                 <thead>
@@ -87,6 +92,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% else %}
+            <p class="text-center">Return To HomeVilled For Your Crew!</p>
+            {% endif %}
         </div>
     </div>
 </section>
@@ -95,6 +103,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <h3>Inventory</h3>
+            <p>Carry Limit: 0/{{ carry_limit }}</p>
         </div>
     </div>
 </section>

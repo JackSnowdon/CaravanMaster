@@ -129,6 +129,9 @@ def hire_merc(request, pk, locpk):
     else:
         ava.gold -= crew.cost
         ava.save()
+        camp = loc.camp
+        camp.gold += crew.cost
+        camp.save()
         crew_form = HireCrewForm()
         form = crew_form.save(commit=False)
         form.base = crew

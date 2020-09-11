@@ -11,7 +11,7 @@ class Avatar(models.Model):
     attack = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
     defense = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
     intel = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10000)], default=0)
-    gold = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000000)], default=0)
+    gold = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000000)], default=500)
     xp = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(1000000000)], default=0)
     created_by = models.ForeignKey(Profile, related_name='games', on_delete=models.CASCADE)
 
