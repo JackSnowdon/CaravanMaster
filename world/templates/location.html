@@ -39,18 +39,23 @@
 
 <section class="player-cav mb-3">
     <div class="row text-center">
-        <div class="col-4">
+        <div class="col-md-6 col-12">
             {% if ava.cav.currently_at == loc %}
             <h3><a href="{% url 'caravan' ava.cav.pk %}" class="cav-item">{{ ava.cav }}</a></h3>
             <p>Guard: {{ ava.cav.guard.count}}/{{ ava.cav.size }}</p>
             <a href="{% url 'move_caravan' ava.cav.pk %}" role="button" class="btn btn-info" aria-disabled="false">Move</a> {% endif %}
         </div>
-        <div class="col-4">
+        <div class="col-md-6 col-12">
             {% if loc.camp %}
             <h3><a href="{% url 'campground' loc.camp.pk %}" class="cav-item mb-3">Campground</a></h3>
             <h5>Mercs For Hire: {{ loc.camp.mercs.all.count }} </h5>{% endif %}
         </div>
-        <div class="col-4">
+    </div>
+</section>
+
+<section class="shops mb-3">
+    <div class="row">
+        <div class="col-md-6 col-12">
             <h3>Shops</h3>
             {% for s in loc.shops.all %}
             <p><a href="{% url 'shop' s.pk %}" class="cav-item">{{ s }}</a></p>

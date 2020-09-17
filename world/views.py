@@ -92,6 +92,8 @@ def location(request, pk):
     return render(request, "location.html", {"loc": loc, "ava": ava})
 
 
+# Campground
+
 @login_required
 def create_camp(request, pk):
     if request.user.profile.staff_access:
@@ -110,14 +112,17 @@ def create_camp(request, pk):
         return redirect("index")
 
 
-# Campground
-
 @login_required
 def campground(request, pk):
     ava = get_current_save(request.user.profile)
     camp = get_object_or_404(Campground, pk=pk)
     return render(request, "campground.html", {"camp": camp, "ava": ava})
 
+
+@login_required
+def edit_campground(request, pk):
+    camp = get_object_or_404(Campground, pk=pk)
+    return render(request, "edit_campground.html", {"camp": camp})
 
 @login_required
 def hire_merc(request, pk, locpk):
@@ -157,6 +162,13 @@ def create_shop(request):
             shop_form = ShopForm(request.POST)
             if shop_form.is_valid():
                 form = shop_form.save(commit=False)
+                if form.location != None:
+                    loc = form.location
+                    shops = loc.shops.all()
+                    for s in shops:
+                        if form.shop_type == s.shop_type:
+                            messages.error(request, f"{loc} Already Has A {form}", extra_tags="alert")
+                            return redirect("world_index")   
                 form.save()
                 messages.error(request, f"New Shop Created", extra_tags="alert")
                 return redirect("world_index")    
