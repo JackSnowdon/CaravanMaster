@@ -16,7 +16,6 @@
             <a href="{% url 'party_home' %}" role="button" class="btn btn-warning" aria-disabled="false">Saves</a>
             <a href="{% url 'member_home' %}" role="button" class="btn btn-success" aria-disabled="false">Member</a>
             <a href="{% url 'world_index' %}" role="button" class="btn btn-info" aria-disabled="false">World</a>
-            <a href="{% url 'edit_campground' camp.pk %}" role="button" class="btn btn-danger" aria-disabled="false">Edit Campground</a>
         </div>
         {% endif %}
     </div>
@@ -26,44 +25,29 @@
     <div class="row text-center">
         <div class="col-12">
             <a href="{% url 'location' camp.location.pk %}" class="cav-item">
-                <h3>{{ camp }}</h3>
+                <h3>Editing {{ camp }}</h3>
             </a>
         </div>
     </div>
 </section>
 
-<section class="mercs">
-    <div class="row">
-        <div class="col-12">
-            <a href="{% url 'caravan' ava.cav.pk %}" class="cav-item">
-                <h5 class="text-center mb-3">Hire Mercs To Cavaran ({{ ava.cav.guard.count}}/{{ ava.cav.size }})</h5>
-            </a>
-            <table class="table table-hover text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Lvl</th>
-                        <th scope="col">Cst</th>
-                        <th scope="col">Mng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for m in camp.mercs.all %}
-                    <tr>
-                        <th scope="row" class="party-list-name"><a href="{% url 'member_base' m.pk %}">{{ m.name }}</th>
-                        <td>{{ m.level }}</td>
-                        <td>{{ m.cost }}</td>
-                        <td class="party-list-item"><a href="{% url 'hire_merc' m.pk camp.location.pk %}"><i class="fas fa-user-plus"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+<section class="merc">
+    <div class="row text-center">
+        <div class="col-6">
+            <h5>Currently For Hire</h5>
+            {% for m in camp.mercs.all %}
+            <p>{{ m }}</p>
+            {% endfor %}
         </div>
-        <div class="col-md">
-            <p class="avatar-stat">Camp Gold</br>{{ camp.gold }}</p>
+        <div class="col-6">
+            <h5>Not Assigned</h5>
+            {% for m in mems %}
+            <p>{{ m }}</p>
+            {% endfor %}
         </div>
     </div>
 </section>
+
 
 
 {% endblock %}

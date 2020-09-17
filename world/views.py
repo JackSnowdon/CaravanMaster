@@ -121,8 +121,15 @@ def campground(request, pk):
 
 @login_required
 def edit_campground(request, pk):
+    ava = get_current_save(request.user.profile)
     camp = get_object_or_404(Campground, pk=pk)
-    return render(request, "edit_campground.html", {"camp": camp})
+    c_mercs = camp.mercs.all()
+    mems = MemberBase.objects.order_by('name')
+    for c in c_mercs:
+        if c in mems:
+            mems = mems.exclude(pk=c.pk)
+    return render(request, "edit_campground.html", {"ava": ava, "camp": camp, "mems": mems})
+
 
 @login_required
 def hire_merc(request, pk, locpk):
@@ -215,7 +222,6 @@ def get_current_save(p):
     ava = get_object_or_404(Avatar, pk=save)
     return ava
 
-    
 
 # Movement 
 
