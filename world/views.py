@@ -143,8 +143,14 @@ def assign_merc_to_campground(request, camppk, mempk):
         ava = get_current_save(request.user.profile)
         camp = get_object_or_404(Campground, pk=camppk)
         merc = get_object_or_404(MemberBase, pk=mempk)
+        for c in merc.camps.all():
+            if c == camp:
+                merc.camps.remove(camp)
+                messages.error(
+                request, f"{merc} Removed From {camp}", extra_tags="alert"
+                    )
+                return redirect("edit_campground", camp.pk)
         merc.camps.add(camp)
-        camp.save()
         messages.error(
             request, f"{merc} Now Hireable From {camp}", extra_tags="alert"
         )

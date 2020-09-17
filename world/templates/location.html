@@ -58,7 +58,7 @@
         <div class="col-md-6 col-12">
             <h3>Shops</h3>
             {% for s in loc.shops.all %}
-            <p><a href="{% url 'shop' s.pk %}" class="cav-item">{{ s }}</a></p>
+            <p><a href="{% url 'shop' s.pk %}" class="cav-item">- {{ s }}</a></p>
             {% endfor %}
         </div>
     </div>
