@@ -121,14 +121,39 @@ def campground(request, pk):
 
 @login_required
 def edit_campground(request, pk):
-    ava = get_current_save(request.user.profile)
-    camp = get_object_or_404(Campground, pk=pk)
-    c_mercs = camp.mercs.all()
-    mems = MemberBase.objects.order_by('name')
-    for c in c_mercs:
-        if c in mems:
-            mems = mems.exclude(pk=c.pk)
-    return render(request, "edit_campground.html", {"ava": ava, "camp": camp, "mems": mems})
+    if request.user.profile.staff_access:
+        ava = get_current_save(request.user.profile)
+        camp = get_object_or_404(Campground, pk=pk)
+        c_mercs = camp.mercs.all()
+        mems = MemberBase.objects.order_by('name')
+        for c in c_mercs:
+            if c in mems:
+                mems = mems.exclude(pk=c.pk)
+        return render(request, "edit_campground.html", {"ava": ava, "camp": camp, "mems": mems})
+    else:
+        messages.error(
+            request, "You Don't Have The Required Permissions", extra_tags="alert"
+        )
+        return redirect("index")
+
+
+@login_required
+def assign_merc_to_campground(request, camppk, mempk):
+    if request.user.profile.staff_access:
+        ava = get_current_save(request.user.profile)
+        camp = get_object_or_404(Campground, pk=camppk)
+        merc = get_object_or_404(MemberBase, pk=mempk)
+        merc.camps.add(camp)
+        camp.save()
+        messages.error(
+            request, f"{merc} Now Hireable From {camp}", extra_tags="alert"
+        )
+        return redirect("edit_campground", camp.pk)
+    else:
+        messages.error(
+            request, "You Don't Have The Required Permissions", extra_tags="alert"
+        )
+        return redirect("index")
 
 
 @login_required
